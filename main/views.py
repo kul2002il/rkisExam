@@ -9,4 +9,4 @@ class IndexView(generic.ListView):
 	template_name = 'main/index.html'
 
 	def get_queryset(self):
-		return Product.objects.order_by('-pub_date')[:5]
+		return Product.objects.order_by('-published_date')[:5]
