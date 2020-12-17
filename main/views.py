@@ -1,5 +1,12 @@
 from django.shortcuts import render
 from django.views import generic
 
+from .models import *
+
+
 class IndexView(generic.ListView):
-	template_name = 'polls/index.html'
+	model = Product
+	template_name = 'main/index.html'
+
+	def get_queryset(self):
+		return Product.objects.order_by('-pub_date')[:5]
