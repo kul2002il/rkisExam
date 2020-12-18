@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}{% endblock %} — Site</title>
+</head>
+<body>
+	<header>
+		<div>Шапка</div>
+		<div>{% block message %}{% endblock %}</div>
+	</header>
+	<main>
+		{% block context %}{% endblock %}
+	</main>
+</body>
+</html>
