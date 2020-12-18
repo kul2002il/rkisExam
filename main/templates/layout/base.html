@@ -1,12 +1,20 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>{% block title %}{% endblock %} — Site</title>
+	<link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 	<header>
 		<div>Шапка</div>
+		{% block search %}
+			<form action="">
+				<input type="text" name="search" id="">
+				<button>Поиск</button>
+			</form>
+		{% endblock %}
 		<div>{% block message %}{% endblock %}</div>
 	</header>
 	<main>
