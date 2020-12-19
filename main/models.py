@@ -20,3 +20,6 @@ class Product(models.Model):
 class PhotoProduct(models.Model):
 	image = models.ImageField(verbose_name="Фото товара")
 	product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+	def __str__(self):
+		return self.image.__str__()
