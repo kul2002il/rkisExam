@@ -7,6 +7,8 @@ from .views import *
 
 urlpatterns = [
 	path('', IndexView.as_view(), name='index'),
+	path('product/', ProductList.as_view(), name='products'),
+	path('product/<int:pk>', ProductDetail.as_view(), name='productsDetail'),
 ]
 
 if settings.DEBUG:

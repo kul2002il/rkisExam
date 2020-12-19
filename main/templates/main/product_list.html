@@ -1,0 +1,23 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Список товаров{% endblock %}
+
+{% block context %}
+	{% block firstArticle %}{% endblock %}
+	<article>
+	{% if object_list %}
+		<ul>
+			{% for product in object_list %}
+				<li>
+					<h3><a href="/polls/{{ product.id }}/">{{ product.title }}</a></h3>
+					{% for image in product.photoproduct_set.all %}
+						<img src="/post_images/{{ image }}" alt="Изображение {{ product.title }}">
+					{% endfor %}
+				</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>No polls are available.</p>
+	{% endif %}
+	</article>
+{% endblock %}

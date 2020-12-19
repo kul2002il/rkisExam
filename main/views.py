@@ -10,3 +10,11 @@ class IndexView(generic.ListView):
 
 	def get_queryset(self):
 		return Product.objects.order_by('-published_date')[:5]
+
+
+class ProductList(generic.ListView):
+	model = Product
+
+
+class ProductDetail(generic.DetailView):
+	model = Product

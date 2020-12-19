@@ -1,20 +1,9 @@
-{% extends "layout/base.html" %}
+{% extends "main/product_list.html" %}
 
-{% block title %}index{% endblock %}
+{% block title %}Главная{% endblock %}
 
-{% block context %}
-	{% if object_list %}
-		<ul>
-			{% for product in object_list %}
-				<li>
-					<a href="/polls/{{ product.id }}/">{{ product.title }}</a>
-					{% for image in product.photoproduct_set.all %}
-						<img src="/post_images/{{ image }}" alt="Изображение {{ product.title }}">
-					{% endfor %}
-				</li>
-			{% endfor %}
-		</ul>
-	{% else %}
-		<p>No polls are available.</p>
-	{% endif %}
+{% block firstArticle %}
+	<article>
+		Описание фирмы, что она предоставляет.
+	</article>
 {% endblock %}

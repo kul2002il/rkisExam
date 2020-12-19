@@ -1,0 +1,13 @@
+{% extends "layout/base.html" %}
+
+{% block title %}{{ product.title }}{% endblock %}
+
+{% block context %}
+	<article>
+		<h1><a href="/polls/{{ product.id }}/">{{ product.title }}</a></h1>
+		<p>{{ product.description }}</p>
+		{% for image in product.photoproduct_set.all %}
+			<img src="/post_images/{{ image }}" alt="Изображение {{ image }}">
+		{% endfor %}
+	</article>
+{% endblock %}
