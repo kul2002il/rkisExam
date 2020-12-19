@@ -9,7 +9,7 @@
 		<ul>
 			{% for product in object_list %}
 				<li>
-					<h3><a href="/polls/{{ product.id }}/">{{ product.title }}</a></h3>
+					<h3><a href="/product/{{ product.id }}/">{{ product.title }}</a></h3>
 					{% for image in product.photoproduct_set.all %}
 						<img src="/post_images/{{ image }}" alt="Изображение {{ product.title }}">
 					{% endfor %}

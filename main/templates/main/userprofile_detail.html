@@ -1,0 +1,22 @@
+{% extends "layout/base.html" %}
+
+{% block title %}{{ product.title }}{% endblock %}
+
+{% block context %}
+	<article>
+		<h1>{{ user.first_name }} {{ user.last_name }}</h1>
+	</article>
+	<article>
+		{% if user.order_set.all %}
+			<table>
+			{% for order in user.order_set.all %}
+				<tr>
+					<td>{{ order.product }}</td>
+				</tr>
+			{% endfor %}
+			</table>
+		{% else %}
+			Нет закаов.
+		{% endif %}
+	</article>
+{% endblock %}

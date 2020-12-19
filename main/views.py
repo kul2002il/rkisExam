@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 
 from .models import *
@@ -18,3 +18,13 @@ class ProductList(generic.ListView):
 
 class ProductDetail(generic.DetailView):
 	model = Product
+
+	def post(self, request, pk):
+		product = get_object_or_404(Product, pk=pk)
+		number = int(request.POST['number'])
+		Order(product=product, user=request.user, number=number).save()
+		return self.get(self, request)
+
+
+def orderList(request):
+	return render(request, 'main/userprofile_detail.html')

@@ -15,9 +15,14 @@
 				<button>Поиск</button>
 			</form>
 		{% endblock %}
-		<div>{% block message %}{% endblock %}</div>
+		{% if user %}
+			<a href="/">{{ user.username }}</a>
+		{% else %}
+			<a href="/">Войти</a>
+		{% endif %}
 	</header>
 	<main>
+		<article>{% block message %}{% endblock %}</article>
 		{% block context %}{% endblock %}
 	</main>
 </body>

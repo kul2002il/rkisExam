@@ -4,8 +4,13 @@
 
 {% block context %}
 	<article>
-		<h1><a href="/polls/{{ product.id }}/">{{ product.title }}</a></h1>
+		<h1>{{ product.title }}</h1>
 		<p>{{ product.description }}</p>
+		<form method="POST">
+			{% csrf_token %}
+			<input type="number" name="number">
+			<button>Заказать</button>
+		</form>
 		{% for image in product.photoproduct_set.all %}
 			<img src="/post_images/{{ image }}" alt="Изображение {{ image }}">
 		{% endfor %}
