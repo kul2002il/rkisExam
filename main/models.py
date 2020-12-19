@@ -31,4 +31,4 @@ class Order(models.Model):
 	number = models.IntegerField(verbose_name="Количество")
 
 	def __str__(self):
-		return ''
+		return self.product.__str__()

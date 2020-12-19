@@ -1,22 +1,32 @@
-{% extends "layout/base.html" %}
+{% extends "main/product_list.html" %}
 
 {% block title %}{{ product.title }}{% endblock %}
 
 {% block context %}
-	<article>
-		<h1>{{ user.first_name }} {{ user.last_name }}</h1>
-	</article>
-	<article>
+	{% if user %}
+		<article>
+			<h1>{{ user.first_name }} {{ user.last_name }}</h1>
+		</article>
+		<article>
 		{% if user.order_set.all %}
-			<table>
-			{% for order in user.order_set.all %}
-				<tr>
-					<td>{{ order.product }}</td>
-				</tr>
-			{% endfor %}
-			</table>
+			<ul>
+				{% for order in user.order_set.all %}
+					<li>
+						<h3><a href="/product/{{ order.product.id }}/">{{ order.product.title }}</a></h3>
+						{% for image in order.product.photoproduct_set.all %}
+							<img src="/post_images/{{ image }}"
+							     alt="Изображение {{ order.product.title }}">
+						{% endfor %}
+					</li>
+				{% endfor %}
+			</ul>
 		{% else %}
-			Нет закаов.
+			<p>Нет заказов.</p>
 		{% endif %}
-	</article>
+		</article>
+	{% else %}
+		<article>
+			Вы не вошли в систему.
+		</article>
+	{% endif %}
 {% endblock %}

@@ -17,12 +17,15 @@
 		{% endblock %}
 		{% if user %}
 			<a href="/">{{ user.username }}</a>
+			<a href="/">Выйти</a>
 		{% else %}
 			<a href="/">Войти</a>
 		{% endif %}
 	</header>
 	<main>
-		<article>{% block message %}{% endblock %}</article>
+		{% if message %}
+			<article>{% block message %}{% endblock %}</article>
+		{% endif %}
 		{% block context %}{% endblock %}
 	</main>
 </body>
