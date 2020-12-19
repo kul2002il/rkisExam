@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class UserProfile(AbstractUser):
-	image = models.ImageField(verbose_name="Аватарка")
+	image = models.ImageField(verbose_name="Аватарка", null=True)
 
 
 class Product(models.Model):
