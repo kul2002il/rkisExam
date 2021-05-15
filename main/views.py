@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import make_password
 
 from .models import *
 from .forms import *
@@ -24,13 +25,20 @@ class ProductDetail(generic.DetailView):
 	# def get(self, request, pk)
 
 	def post(self, request, pk):
+		print("===========================================================================")
 		message = []
-		if 'user' in request:
+		print(request.user)
+		print("+" + type(request.user._wrapped).__name__ + "+")
+		print(type(request.user._wrapped).__name__ == "UserProfile")
+		if type(request.user._wrapped).__name__ == "UserProfile":
 			product = get_object_or_404(Product, pk=pk)
+			print(product)
 			number = int(request.POST['number'])
+			print(number)
 			Order(product=product, user=request.user, number=number).save()
 			message.append('Заказ добавлен.')
 		else:
+			print("Пользователь не в системе.")
 			message.append('Необходимо войти в систему.')
 		context = {'messages': message,}
 		return self.get(self, request, pk)
@@ -81,14 +89,14 @@ def registerView(request):
 				message.append('Данный логин занят.')
 			else:
 				user = UserProfile(username=data['username'],
-				                   password=data['password'],
+				                   password=make_password(data['password']),
 				                   first_name=data['first_name'],
 				                   last_name=data['last_name'],
 				                   image=data['image'],
 				                   email=data['email'])
 				user.save()
 				login(request, user)
-				redirect('some-view-name', foo='bar')
+				return render(request, 'main/userprofile_detail.html')
 	else:
 		form = UserProfileForm()
 	context = {'form': form, 'messages': message}
