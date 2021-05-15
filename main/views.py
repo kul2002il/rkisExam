@@ -22,9 +22,15 @@ class ProductDetail(generic.DetailView):
 	model = Product
 
 	def post(self, request, pk):
-		product = get_object_or_404(Product, pk=pk)
-		number = int(request.POST['number'])
-		Order(product=product, user=request.user, number=number).save()
+		message = []
+		if 'user' in request:
+			product = get_object_or_404(Product, pk=pk)
+			number = int(request.POST['number'])
+			Order(product=product, user=request.user, number=number).save()
+			message.append('Заказ добавлен.')
+		else:
+			message.append('Необходимо войти в систему.')
+		context = {'messages': message,}
 		return self.get(self, request)
 
 
