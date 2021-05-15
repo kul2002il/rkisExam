@@ -3,14 +3,20 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>{% block title %}{% endblock %} — Site</title>
+	<title>{% block title %}Главная{% endblock %} — Site</title>
 	<link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 	<header>
 		<nav>
 			<a href="/">Главная</a>
-			<a href="/product">Товары</a>
+			<a href="/news">Новости</a>
+			{% if user.is_authenticated %}
+				<a href="/repair">{{ user.username }}</a>
+				<a href="/logout">Выйти</a>
+			{% else %}
+				<a href="/login">Войти</a>
+			{% endif %}
 		</nav>
 		{% block search %}
 			<form action="">
@@ -18,16 +24,11 @@
 				<button>Поиск</button>
 			</form>
 		{% endblock %}
-		{% if user.is_authenticated %}
-			<a href="/order">{{ user.username }}</a>
-			<a href="/logout">Выйти</a>
-		{% else %}
-			<a href="/login">Войти</a>
-		{% endif %}
 	</header>
 	<main>
 		{% if messages %}
 			<article>
+				<h2>Системные сообщения.</h2>
 				<ul>
 					{% for message in messages %}
 						<li>{{ message }}</li>

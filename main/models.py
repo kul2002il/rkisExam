@@ -8,7 +8,7 @@ class UserProfile(AbstractUser):
 	image = models.ImageField(verbose_name="Аватарка", null=True)
 
 
-class Product(models.Model):
+class Product(models.Model): # Новость
 	title = models.CharField(max_length=255, verbose_name='Название')
 	description = models.TextField(verbose_name='Описание товара', default='')
 	published_date = models.DateTimeField(verbose_name='Дата публикации', default=timezone.now)
@@ -17,7 +17,7 @@ class Product(models.Model):
 		return self.title
 
 
-class PhotoProduct(models.Model):
+class PhotoProduct(models.Model): # Фото новости
 	image = models.ImageField(verbose_name="Фото товара")
 	product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
@@ -25,7 +25,7 @@ class PhotoProduct(models.Model):
 		return self.image.__str__()
 
 
-class Order(models.Model):
+class Order(models.Model): # Лайки
 	product = models.ForeignKey(Product, on_delete=models.CASCADE)
 	user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	number = models.IntegerField(verbose_name="Количество")

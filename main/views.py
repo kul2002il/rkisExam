@@ -21,6 +21,8 @@ class ProductList(generic.ListView):
 class ProductDetail(generic.DetailView):
 	model = Product
 
+	# def get(self, request, pk)
+
 	def post(self, request, pk):
 		message = []
 		if 'user' in request:
@@ -31,7 +33,7 @@ class ProductDetail(generic.DetailView):
 		else:
 			message.append('Необходимо войти в систему.')
 		context = {'messages': message,}
-		return self.get(self, request)
+		return self.get(self, request, pk)
 
 
 def orderList(request):

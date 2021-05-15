@@ -8,8 +8,9 @@
 		<p>{{ product.description }}</p>
 		<form method="POST">
 			{% csrf_token %}
-			<input type="number" name="number">
-			<button>Заказать</button>
+			Поставить
+			<input type="number" name="number" required>
+			<button>Лайков</button>
 		</form>
 		{% for image in product.photoproduct_set.all %}
 			<img src="/post_images/{{ image }}" alt="Изображение {{ image }}">

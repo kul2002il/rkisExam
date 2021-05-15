@@ -14,7 +14,7 @@
 			<ul>
 				{% for order in user.order_set.all %}
 					<li>
-						<h3><a href="/product/{{ order.product.id }}/">{{ order.product.title }}</a></h3>
+						<h3><a href="/news/{{ order.product.id }}/">{{ order.product.title }}</a></h3>
 						{% for image in order.product.photoproduct_set.all %}
 							<img src="/post_images/{{ image }}"
 							     alt="Изображение {{ order.product.title }}">
